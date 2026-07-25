@@ -22,8 +22,6 @@ src/
   privacy_analysis.py         SHAP feature selection + DP-GNB/DP-LR/DP-CNN    -> Tables 5-7, Figures 12-13
   participant_split_check.py  optional leakage sanity check (see below)
 
-notebooks/
-  AuditFall_full_pipeline.ipynb   runs everything above in order, Colab-ready
 
 results/
   figures/     saved plots (populated when you run the pipeline)
