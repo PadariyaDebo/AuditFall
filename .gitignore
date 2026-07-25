@@ -1,0 +1,25 @@
+# dataset (download it yourself, see README)
+data/SisFall_dataset/
+*.zip
+
+# don't commit kaggle credentials
+kaggle.json
+
+# python
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+.venv/
+venv/
+*.egg-info/
+
+# generated outputs -- keep the folder structure but not the (large) contents
+results/figures/*
+results/tables/*
+!results/figures/.gitkeep
+!results/tables/.gitkeep
+
+# OS junk
+.DS_Store
+Thumbs.db
