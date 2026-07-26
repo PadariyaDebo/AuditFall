@@ -1,13 +1,8 @@
 """
-Trains the six classical ML classifiers from Section 3.4.1 / Table 2:
-SVM, Decision Tree, Random Forest, KNN, Gaussian NB, AdaBoost.
+Training functions for the classical ML models used in AuditFall.
 
-Run this after data_loading.py + features.py, or just run this file
-directly and it'll do the loading/feature extraction itself.
+Includes SVM, Decision Tree, Random Forest, KNN, Gaussian NB, and AdaBoost.
 
-Hyperparameters here match what's reported in the paper -- they weren't
-tuned via grid search, just picked to be reasonable given the dataset
-size and dimensionality (see Section 3.4.1 for the reasoning behind each).
 """
 
 import warnings
