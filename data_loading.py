@@ -1,15 +1,6 @@
 """
-Loads the raw SisFall recordings off disk.
+Loads the raw SisFall recordings from disk
 
-SisFall ships as one folder per subject (SA01, SA02, ..., SE01, ...),
-each containing .txt files named like D01_SA01_R01.txt (activity_subject_trial).
-We just walk the tree, read every file, and tag it Fall / Non-Fall based on
-the activity prefix (D = fall, F/R = ADL).
-
-A couple of Kaggle mirrors of SisFall nest the actual subject folders one
-level deeper than you'd expect (SisFall_dataset/SisFall_dataset/SA01/...),
-so find_sisfall_base_dir() below just searches for it instead of hardcoding
-a path -- saved a lot of manual poking around in Colab.
 """
 
 import os
