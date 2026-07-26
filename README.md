@@ -1,7 +1,7 @@
 # AuditFall: Explainable and Privacy-Preserving Fall Detection Using Wearable Sensors
 
 Ten fall detection models (six classical ML classifiers, three feedforward
-neural nets, one LSTM) trained on the SisFall wearable sensor dataset. Includes
+neural networks, one LSTM) trained on the SisFall wearable sensor dataset. Includes
 SHAP/LIME explainability on the best model and a SHAP-guided privacy analysis
 comparing DP under three mechanisms.
 
@@ -27,7 +27,7 @@ results/
 ## Getting the data
 
 Dataset is [SisFall](http://sistemic.udea.edu.co/en/investigacion/proyectos/english-falls/)
-(Sucerquia et al., *Sensors* 2017). We used a Kaggle mirror during dev:
+(Sucerquia et al., *Sensors* 2017). We used a Kaggle mirror during development:
 
 ```
 kaggle datasets download -d kushajm/sisfall-dataset-fall-detection --unzip -p ./SisFall_dataset/
@@ -57,6 +57,10 @@ scripts in order: `data_loading.py` -> `features.py` -> `train_ml_models.py`
 -> `train_deep_models.py` -> `significance_testing.py` -> `explainability.py`
 -> `privacy_analysis.py`. Each writes its outputs to `results/tables/` or
 `results/figures/` as it goes.
+
+## Requirements
+
+Python 3.10 or 3.11.
 
 ## Setup
 
