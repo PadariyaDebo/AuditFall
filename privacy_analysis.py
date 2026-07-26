@@ -1,19 +1,8 @@
 """
-Section 5 of the paper: SHAP-guided feature selection (5.1, Figure 12)
+SHAP-guided feature selection (5.1, Figure 12)
 and the three-way differential privacy comparison (5.2, Tables 5-7,
 Figure 13) -- DP-GaussianNB, DP-SGD logistic regression, and DP-SGD on
 the regularised CNN.
-
-The DP-CNN sweep is the trickiest bit here. The straightforward way to
-sweep it (vary noise multiplier AND number of training epochs together
-to hit a target epsilon) confounds "more privacy" with "more training
-steps" -- so accuracy going up as epsilon increases could just mean the
-model trained longer, not that it saw less noise. `run_dp_cnn_sweep`
-below still does that for backwards-compat, but
-`run_dp_cnn_sweep_fixed_epochs` is the one you actually want: it holds
-the epoch count constant and only varies the noise multiplier, so any
-accuracy change is attributable to noise level alone. See the paper's
-response-to-reviewers notes / Section 5.2.2 for the full reasoning.
 """
 
 import math
