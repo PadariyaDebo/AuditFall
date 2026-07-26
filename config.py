@@ -1,9 +1,5 @@
 """
-Shared config for the AuditFall pipeline.
-
-Nothing fancy here, just the constants that get reused across
-data_loading / features / the model scripts so they don't drift
-out of sync with each other.
+Configuration constants for the AuditFall pipeline:
 """
 
 import os
