@@ -1,14 +1,7 @@
 """
-Turns a raw recording (Nx9 matrix, one column per sensor axis) into the
-76-dim statistical feature vector used by every classical ML model and
-the CNN variants in the paper.
+Feature extraction for the AuditFall pipeline.
 
-Per channel: mean, median, std, max, min, variance, skewness, kurtosis
-(8 stats x 9 channels = 72), plus 4 more from the resultant acceleration
-magnitude of the ADXL345 (mean/std/max/min) = 76 total.
-
-Falls tend to show up as a short, high-amplitude, heavy-tailed spike in
-these stats -- that's basically the whole premise of the feature set.
+Computes 76 time-domain statistical features from each recording.
 """
 
 import numpy as np
