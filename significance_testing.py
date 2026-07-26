@@ -1,9 +1,6 @@
 """
-Pairwise McNemar's test between classifiers (Section 4.2 / Table 3).
-
-Raw accuracy differences between the top few models turn out to be small
-enough that they could just be noise from the specific test split -- this
-is what actually checks that rather than eyeballing the numbers.
+Pairwise McNemar's tests between classifiers.
+Used to compare classifier predictions on the same test set.
 """
 
 import numpy as np
