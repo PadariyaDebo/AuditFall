@@ -1,12 +1,6 @@
 """
 SHAP + LIME explainability for the Random Forest model (Section 3.5,
 Section 4.4-4.6, Figures 6-11).
-
-SHAP gives the global picture (which features matter across the whole
-test set) and LIME gives local, per-instance explanations. We run both
-because they're answering slightly different questions -- SHAP is
-theoretically grounded (Shapley values) but LIME is useful as a sanity
-check since it approximates the model completely independently.
 """
 
 import os
