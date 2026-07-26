@@ -1,16 +1,9 @@
 """
-Not part of the paper's reported results -- this is a sanity check we ran
-during review to make sure the random train/test split (Section 3.2.2)
-wasn't letting the same participant's recordings show up on both sides,
-which would inflate accuracy relative to a real deployment where the
-system meets someone it's never seen before.
+Participant-disjoint train/test split for evaluating potential
+participant leakage in the SisFall dataset.
 
-Short version of what we found: participant-disjoint splitting drops RF
-accuracy by about half a point (99.82% -> ~99.3%), so the random-split
-numbers in the paper aren't meaningfully inflated. Included here in case
-anyone wants to verify that themselves or build on it.
-
-Needs `subjects` from data_loading.load_sisfall(track_subjects=True).
+This script reproduces the analysis described in the paper and compares
+participant-disjoint and random train/test splits using the Random Forest model.
 """
 
 import numpy as np
