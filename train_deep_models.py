@@ -1,13 +1,9 @@
 """
-Deep learning models from Section 3.4.2 / Table 4:
-  - CNN (SGD)          -- plain feedforward net, SGD optimiser, no regularisation
-  - CNN (Adam)          -- same architecture, Adam optimiser
-  - CNN (Regularised)   -- Adam + L2 + Dropout, the one we actually recommend
-  - LSTM                -- operates on raw windowed signal, not the 76-d features
+Deep learning models for the AuditFall pipeline.
 
-Calling these "CNN" is a bit of a misnomer carried over from the paper --
-they're plain dense feedforward networks, not convolutional. Kept the
-naming consistent with the paper so results line up with Table 4.
+Includes feedforward models and an LSTM implementation used for the
+experiments reported in Section 4.3.
+
 """
 
 import numpy as np
