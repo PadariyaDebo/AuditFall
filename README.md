@@ -18,10 +18,6 @@ src/
   explainability.py           SHAP (global + local) and LIME                  -> Figures 6-11
   privacy_analysis.py         SHAP feature selection + DP-GNB/DP-LR/DP-CNN    -> Tables 5-7, Figures 12-13
   participant_split_check.py  optional leakage sanity check (see below)
-
-results/
-  figures/     saved plots (populated when you run the pipeline)
-  tables/      saved CSVs matching the paper's tables
 ```
 
 ## Getting the data
@@ -69,9 +65,7 @@ pip install -r requirements.txt
 ```
 
 TensorFlow and the DP libraries (`diffprivlib`, `dp-accounting`) are the heavy
-deps. Skip `tensorflow`, `tensorflow-privacy`, `dp-accounting` if you only
-want the classical models + explainability.
-
+deps. 
 ## Privacy analysis — a note on the DP-CNN sweep
 
 `privacy_analysis.py` has two versions:
