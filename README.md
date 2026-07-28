@@ -63,18 +63,6 @@ pip install -r requirements.txt
 
 TensorFlow and the DP libraries (`diffprivlib`, `dp-accounting`) are the heavy
 deps. 
-## Privacy analysis — a note on the DP-CNN sweep
-
-`privacy_analysis.py` has two versions:
-
-- `run_dp_cnn_sweep` — noise multiplier and epochs both change to hit each
-  target epsilon.
-- `run_dp_cnn_sweep_fixed_epochs` — epochs fixed, only noise multiplier
-  varies. This is what's actually used for Table 6. The first version
-  confounds "less noise" with "more training" so you can't really tell
-  which one is pushing accuracy up as epsilon increases.
-
-Use the fixed-epoch version unless you've got a reason not to.
 
 ## Reproducibility notes
 
