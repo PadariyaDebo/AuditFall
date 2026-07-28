@@ -257,28 +257,6 @@ def run_dp_cnn_sweep(trainer, configs=None, n_seeds=5):
         print(f"nm={noise_multiplier:5.2f} epochs={epochs:2d} | eps={eps:.3f} | "
               f"acc={mean_acc:.2f}% +/- {std_acc:.2f}%")
     return results
-
-
-def run_dp_cnn_sweep_fixed_epochs(trainer, epsilons=EPSILONS, fixed_epochs=15, n_seeds=5):
-    """The deconfounded version: epoch count (and therefore total gradient
-    steps) is held constant across every epsilon target, and only the
-    noise multiplier changes. This is the one that should actually go in
-    the paper's Table 6 -- see the module docstring for why."""
-    steps_per_epoch = trainer.n_train // trainer.batch_size
-    total_steps = fixed_epochs * steps_per_epoch
-    print(f"Fixed budget: {fixed_epochs} epochs = {total_steps} steps for every row below")
-
-    results = []
-    for target_eps in epsilons:
-        nm, achieved_eps = trainer.find_noise_multiplier_for_epsilon(target_eps, fixed_epochs)
-        accs = [trainer.train_once(nm, fixed_epochs, seed) for seed in range(n_seeds)]
-        mean_acc, std_acc = np.mean(accs) * 100, np.std(accs) * 100
-        results.append((achieved_eps, mean_acc, std_acc, nm, fixed_epochs, target_eps))
-        print(f"target_eps={target_eps:6.2f} | nm={nm:6.3f} | achieved_eps={achieved_eps:.3f} | "
-              f"acc={mean_acc:.2f}% +/- {std_acc:.2f}%")
-    return results
-
-
 # ---------------------------------------------------------------------------
 # Figure 13: three-way comparison plot
 # ---------------------------------------------------------------------------
