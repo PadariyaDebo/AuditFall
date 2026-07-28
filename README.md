@@ -49,7 +49,7 @@ python train_ml_models.py     # trains all 6 classifiers, prints Table 2
 
 To reproduce the full set of results (Tables 2-7, Figures 6-13), run the
 scripts in order: `data_loading.py` -> `features.py` -> `train_ml_models.py`
--> `train_deep_models.py` -> `significance_testing.py` -> `explainability.py`
+-> `train_deep_models.py` -> `significance_testing.py` -> `explainability.py` -> privacy_analysis.py
 
 ## Requirements
 
