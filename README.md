@@ -51,8 +51,6 @@ python train_ml_models.py     # trains all 6 classifiers, prints Table 2
 To reproduce the full set of results (Tables 2-7, Figures 6-13), run the
 scripts in order: `data_loading.py` -> `features.py` -> `train_ml_models.py`
 -> `train_deep_models.py` -> `significance_testing.py` -> `explainability.py`
--> `privacy_analysis.py`. Each writes its outputs to `results/tables/` or
-`results/figures/` as it goes.
 
 ## Requirements
 
@@ -78,15 +76,6 @@ deps.
   which one is pushing accuracy up as epsilon increases.
 
 Use the fixed-epoch version unless you've got a reason not to.
-
-## Participant-disjoint split check
-
-Not part of the paper's main results — the paper uses the standard SisFall
-protocol, a random 75:25 split (Section 3.2.2). `participant_split_check.py`
-checks what happens if no participant's recordings appear on both sides of
-the split instead (random splits can technically let near-duplicate
-recordings leak across train/test). Effect was small, well under a point on
-RF. Kept the script in anyway in case anyone wants to dig further.
 
 ## Reproducibility notes
 
