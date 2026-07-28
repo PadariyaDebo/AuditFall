@@ -17,7 +17,6 @@ src/
   significance_testing.py     McNemar pairwise tests                          -> Table 3
   explainability.py           SHAP (global + local) and LIME                  -> Figures 6-11
   privacy_analysis.py         SHAP feature selection + DP-GNB/DP-LR/DP-CNN    -> Tables 5-7, Figures 12-13
-  participant_split_check.py  optional leakage sanity check (see below)
 ```
 
 ## Getting the data
