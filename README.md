@@ -1,9 +1,15 @@
 # AuditFall: Explainable and Privacy-Preserving Fall Detection Using Wearable Sensors
 
-Ten fall detection models (six classical ML classifiers, three feedforward
-neural networks, one LSTM) trained on the SisFall wearable sensor dataset. Includes
-SHAP/LIME explainability on the best model and a SHAP-guided privacy analysis
-comparing DP under three mechanisms.
+# AuditFall
+
+This repository contains the implementation of the code for the paper "AuditFall: Explainable and Privacy-Preserving Fall Detection Using Wearable Sensors."
+
+## About
+
+Falls are a leading cause of injury-related mortality among adults over 75. Although wearable sensor-based systems can detect falls with high accuracy, clinical deployment also requires interpretable predictions to support clinician trust and regulatory approval, alongside privacy-preserving methods to protect sensitive movement data.
+
+This paper benchmarks nine fall detection models on the SisFall wearable sensor dataset, comprising six classical ML classifiers, two CNN variants, and one LSTM. We use SHAP and LIME to explain the best-performing model's decisions, then use SHAP's feature importance rankings to cut the input down from 76 features to 15 with no meaningful loss in accuracy, and measure how much of that accuracy survives under differential privacy across three different DP mechanisms (DP-GNB, DP-LR, DP-CNN).
+
 
 ## What's in here
 
