@@ -1,28 +1,3 @@
-"""
-Fixed-length window features and LSTM evaluation at the recording level.
-
-Part A - fixed-length window instead of the whole recording
-  SisFall recordings differ in length by activity (e.g. falls ~15 s, some ADLs
-  ~100 s), so features computed over a whole recording can partly encode its
-  duration. Here the same 76 features are computed on a fixed 4 s window
-  (800 samples at 200 Hz) centred on the peak acceleration magnitude
-  (ADXL345), i.e. the information a detector would have shortly after an
-  impact. Evaluated with 5-fold participant-grouped CV for the six classical
-  models, alongside whole-recording features for comparison.
-
-Part B - LSTM evaluated per recording
-  The LSTM uses 200 x 9 raw windows (1 s, 50% overlap). It is trained and tested
-  on the participant-disjoint holdout from explainability_feature_selection.py (windows never cross the
-  split), and its window predictions are aggregated per recording (mean
-  probability, majority vote, maximum probability) so it can be compared
-  with the feature-based models on the same recordings.
-  A GPU runtime is recommended (Runtime > Change runtime type > T4 GPU).
-
-Usage:  !python window_lstm_evaluation.py                 (both parts)
-        !python window_lstm_evaluation.py --part A        (fast, no LSTM)
-        !python window_lstm_evaluation.py --part B --epochs 30
-Outputs: results/window_lstm/
-"""
 
 import argparse
 import json
