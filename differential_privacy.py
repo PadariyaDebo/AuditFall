@@ -1,35 +1,5 @@
 """
 Differential privacy experiments: DP-GNB, DP-LR, DP-SGD-LR and DP-SGD-MLP.
-
-Setting
-  * participant-disjoint holdout and SHAP top-15 features from explainability_feature_selection.py
-    (ranked on training participants only)
-  * features standardised with training-set statistics, then CLIPPED to a
-    fixed range [-B, B] (B = 3) chosen before seeing the data, so the DP
-    sensitivity bounds are data-independent (no data-dependent bounds estimation)
-  * the same epsilon grid for every model
-
-Models
-  1. DP-GNB      diffprivlib.models.GaussianNB  (Laplace-based perturbation of the
-                 class-conditional means/variances; class counts also privatised; pure eps-DP)
-  2. DP-LR (OP)  diffprivlib.models.LogisticRegression (objective perturbation,
-                 Chaudhuri et al. 2011; pure eps-DP), data_norm = B * sqrt(15)
-  3. DP-SGD-LR   logistic regression (single sigmoid unit) trained with DP-SGD
-  4. DP-SGD-MLP  regularised MLP trained with DP-SGD
-  DP-SGD-LR and DP-SGD-MLP share EVERYTHING except the architecture: Poisson
-  sampling, clipping norm, noise multiplier, epochs, optimiser, learning rate
-  and RDP accountant. Comparing them isolates model capacity; comparing
-  DP-SGD-LR with DP-LR (OP) isolates the privacy mechanism.
-
-  Non-private references on the identical 15 clipped features are also reported.
-
-What eps covers: model training only. Feature standardisation statistics and the
-SHAP-based feature selection are computed non-privately on the training
-participants and are NOT covered by eps (as stated in the paper).
-
-Usage:  !python differential_privacy.py           (run explainability_feature_selection.py first)
-        !python differential_privacy.py --quick   (fewer seeds, for a test run)
-Outputs: results/privacy/
 """
 
 import argparse
@@ -54,8 +24,8 @@ from common import (load_features, make_rf, build_mlp, metrics, out_dir, set_see
                              CACHE_DIR, SEED)
 
 EPSILONS = [0.1, 0.5, 1.0, 2.0, 5.0, 10.0]
-B = 3.0                 # fixed clipping range for standardised features
-DELTA = 1e-5            # for DP-SGD (diffprivlib models are pure eps-DP, delta = 0)
+B = 3.0                 
+DELTA = 1e-5            
 EPOCHS = 15
 EXPECTED_BATCH = 64
 CLIP_NORM = 1.0
