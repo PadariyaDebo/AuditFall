@@ -34,9 +34,6 @@ explainability_feature_selection.py    training-only SHAP feature selection (nes
 differential_privacy.py                DP-GNB, DP-LR (objective perturbation), DP-SGD-LR, DP-SGD-MLP
 window_lstm_evaluation.py              4 s window features; LSTM evaluated per recording
 plot_shap_waterfalls.py                redraws the SHAP waterfall figures from the cached results
-
-notebooks/AuditFall_colab.ipynb        runs the full pipeline in Google Colab
-legacy/                                original-submission code (superseded)
 ```
 
 ## Getting the data
@@ -59,11 +56,11 @@ pip install -r requirements.txt
 
 python random_split_baseline.py
 python grouped_evaluation.py --loso
-python explainability_feature_selection.py   # reuses the folds saved by grouped_evaluation.py
-python differential_privacy.py               # uses the holdout split and top-15 features from the previous step
-python window_lstm_evaluation.py             # a GPU is recommended for the LSTM
-python plot_shap_waterfalls.py               # optional: redraw the SHAP waterfall figures
-
+python explainability_feature_selection.py   
+python differential_privacy.py               
+python window_lstm_evaluation.py             
+python plot_shap_waterfalls.py              
+```
 
 
 ## Requirements
@@ -73,8 +70,8 @@ Versions used for the reported results: scikit-learn 1.6.1, TensorFlow 2.21.0, d
 
 ## Reproducibility notes
 
-- All splits are seeded; later scripts reuse the folds (`results/grouped_cv/fold_assignments.csv`) and the holdout (`results/cache/holdout_top15.npz`) saved by earlier scripts, so every result uses identical splits.
-- Hyperparameters (RF n_estimators=10, KNN k=15, SVM C=10, etc.) were not grid-searched; they are the documented choices in Section 3.4 of the paper.
+- All splits are seeded; later scripts reuse the folds (`results/grouped_cv/fold_assignments.csv`) and the holdout (`results/cache/holdout_top15.npz`).
+- Hyperparameters (RF n_estimators=10, KNN k=15, SVM C=10, etc.) 
 - ε covers model training only; the training-set standardisation statistics and SHAP feature selection are computed non-privately.
 - The LSTM uses raw 200-sample windows (1 s at 200 Hz, 50% overlap); windows inherit their recording's label.
 
