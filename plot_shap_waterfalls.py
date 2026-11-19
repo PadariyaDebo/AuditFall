@@ -1,12 +1,4 @@
-"""
-Regenerates the two SHAP waterfall figures (fall and non-fall) on fresh
-figures. Uses the cached features and participant-disjoint holdout saved by
-explainability_feature_selection.py, so the dataset is not needed and the model, sample
-and selected instances are identical to those used there.
 
-Usage:  !python plot_shap_waterfalls.py
-Output: results/figures/shap_waterfall_fall.pdf, shap_waterfall_nonfall.pdf
-"""
 import os
 import warnings
 
