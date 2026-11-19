@@ -1,17 +1,3 @@
-"""
-Participant-independent evaluation: performance on previously unseen participants.
-
-* 5-fold participant-grouped, class-stratified CV (StratifiedGroupKFold):
-  no participant appears in both the training and test folds
-* all eight feature-based models (6 classical + 2 MLPs)
-* scaler fitted inside each training fold
-* reports mean ± std over folds, pooled out-of-fold metrics, McNemar on the
-  pooled out-of-fold predictions, and results split by young/older participants
-* optional --loso: leave-one-subject-out for Random Forest (per-participant results)
-
-Usage:  !python grouped_evaluation.py            (add --no-dl to skip the MLPs, --loso for LOSO)
-Outputs: results/grouped_cv/
-"""
 
 import argparse
 import json
