@@ -16,4 +16,4 @@ tensorflow>=2.12
 # differential privacy
 diffprivlib>=0.6
 dp-accounting>=0.4
-
+typing-extensions>=4.16
