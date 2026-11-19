@@ -4,15 +4,14 @@ Configuration constants for the AuditFall pipeline:
 
 import os
 
-# Where the SisFall dataset lives once downloaded/extracted. Override with
-# the SISFALL_DIR env var if your folder structure is different, e.g. if
-# you're running this outside Colab.
+
 BASE_DIR = os.environ.get("SISFALL_DIR", "/content/SisFall_dataset")
 
-# Activity code prefixes in the SisFall filenames (see the dataset README):
-# D01-D15 = falls, F01-F19 and R01-R10 = activities of daily living / rest
-FALL_PREFIX = "D"
-ADL_PREFIX = ("F", "R")
+# Activity code prefixes in the SisFall filenames, following the original
+# dataset definition (Sucerquia et al., Sensors 2017, 17, 198):
+# F01-F15 = falls, D01-D19 = activities of daily living (ADLs)
+FALL_PREFIX = "F"
+ADL_PREFIX = ("D",)
 
 RANDOM_STATE = 0
 TEST_SIZE = 0.25
