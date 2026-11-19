@@ -14,9 +14,7 @@ SUBJECT_PATTERN = re.compile(r"^(SA|SE)\d+", re.IGNORECASE)
 
 
 def find_sisfall_base_dir(search_root=BASE_DIR):
-    """Walk the extracted archive and return the folder whose direct
-    children are the subject folders (SA01, SE01, ...). Returns None if
-    nothing matching was found, in which case check your extraction path."""
+    
     for dirpath, dirnames, filenames in os.walk(search_root):
         subject_dirs = [d for d in dirnames if SUBJECT_PATTERN.match(d)]
         if not subject_dirs:
@@ -27,16 +25,9 @@ def find_sisfall_base_dir(search_root=BASE_DIR):
     return None
 
 
-def load_sisfall(base_dir, track_subjects=True):
-    """Read every recording under base_dir.
-
-    Returns (data, labels) as lists, or (data, labels, subjects) if
-    track_subjects=True -- the subject IDs aren't used by the main
-    pipeline (which matches the paper's random split) but are handy if
-    you want to run the participant-disjoint sanity check in
-    participant_split_check.py.
-    """
-    data, labels, subjects = [], [], []
+def load_sisfall(base_dir, track_subjects=True, return_filenames=False):
+    
+    data, labels, subjects, filenames = [], [], [], []
     skipped = 0
 
     for subject in sorted(os.listdir(base_dir)):
@@ -65,6 +56,7 @@ def load_sisfall(base_dir, track_subjects=True):
                 data.append(df.values.astype(float))
                 labels.append(label)
                 subjects.append(subject)
+                filenames.append(fname)
             except Exception:
                 # a handful of SisFall files have malformed trailing rows --
                 # not worth crashing the whole load over, just skip them
@@ -73,10 +65,20 @@ def load_sisfall(base_dir, track_subjects=True):
     print(f"Loaded: {len(data)} files | Skipped: {skipped}")
     print(f"Falls: {sum(l == 1 for l in labels)} | Non-falls: {sum(l == 0 for l in labels)}")
 
+    if return_filenames:
+        print(f"Unique subjects: {len(set(subjects))}")
+        return data, labels, subjects, filenames
     if track_subjects:
         print(f"Unique subjects: {len(set(subjects))}")
         return data, labels, subjects
     return data, labels
+
+
+if __name__ == "__main__":
+    resolved_dir = find_sisfall_base_dir() or BASE_DIR
+    print(f"Using base dir: {resolved_dir}")
+    data, labels, subjects = load_sisfall(resolved_dir)
+
 
 
 if __name__ == "__main__":
