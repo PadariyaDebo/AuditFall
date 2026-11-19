@@ -1,26 +1,3 @@
-"""
-SHAP feature ranking and feature selection using training participants only,
-and the SHAP/LIME explanation figures.
-
-Part A - nested, participant-grouped evaluation of SHAP-guided selection
-  For each of the 5 outer participant-disjoint folds:
-    1. fit RF on the training participants only
-    2. TreeSHAP on 300 training instances (seeded) -> feature ranking
-    3. choose k by inner participant-grouped 3-fold CV on the training fold
-       (smallest k within 0.5 pp of the best inner accuracy)
-    4. evaluate RF on the top-k (and on the fixed top-15) on the unseen test fold
-  Also reports how often each feature enters the top 15 across folds (stability).
-
-Part B - participant-disjoint holdout used for the figures and the privacy experiments
-    * ranking from SHAP on training participants only
-    * global figures (bar, beeswarm) from the training sample
-    * local figures (SHAP waterfall, LIME) for correctly classified held-out
-      fall and ADL recordings
-    * saves the holdout split + top-15 indices to results/cache/holdout_top15.npz
-
-Usage:  !python explainability_feature_selection.py
-Outputs: results/explainability/ and results/figures/
-"""
 
 import json
 import os
