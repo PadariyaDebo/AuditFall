@@ -1,10 +1,3 @@
-"""
-Shared helpers for the AuditFall experiment scripts.
-
-* features are extracted once and cached in results/cache/features.npz
-* all splits are participant-disjoint (StratifiedGroupKFold on subject IDs)
-* sensitivity = recall on falls (label 1), specificity = recall on ADLs (label 0)
-"""
 
 import os
 import random
@@ -45,11 +38,6 @@ def set_seeds(seed=SEED):
     except Exception:
         pass
 
-
-# --------------------------------------------------------------------------
-# data
-# --------------------------------------------------------------------------
-
 def load_raw():
     base_dir = find_sisfall_base_dir() or BASE_DIR
     data, labels, subjects, filenames = load_sisfall(base_dir, return_filenames=True)
@@ -86,8 +74,7 @@ def grouped_holdout(y, subjects, seed=SEED):
 
 
 def saved_folds(y, subjects):
-    """The 5 participant-disjoint folds saved by grouped_evaluation.py (so every script uses
-    identical folds, whatever the scikit-learn version); computed if absent."""
+
     path = os.path.join(RESULTS_DIR, "grouped_cv", "fold_assignments.csv")
     legacy_path = os.path.join(RESULTS_DIR, "day2", "fold_assignments.csv")  # older output folder name
     if not os.path.exists(path) and os.path.exists(legacy_path):
@@ -101,7 +88,7 @@ def saved_folds(y, subjects):
 
 
 def saved_holdout(y, subjects):
-    """The participant-disjoint holdout saved by explainability_feature_selection.py; computed if absent."""
+   
     path = os.path.join(CACHE_DIR, "holdout_top15.npz")
     if os.path.exists(path):
         z = np.load(path)
@@ -114,10 +101,6 @@ def subject_group(subjects):
     """SA = young adults (falls + ADLs), SE = older adults (ADLs only, except SE06)."""
     return np.array(["Young (SA)" if str(s).upper().startswith("SA") else "Older (SE)" for s in subjects])
 
-
-# --------------------------------------------------------------------------
-# models
-# --------------------------------------------------------------------------
 
 def classical_models():
     return {
@@ -170,10 +153,6 @@ def fit_predict_mlp(name, X_tr, y_tr, groups_tr, X_te):
               epochs=100, batch_size=32, shuffle=True, callbacks=[es], verbose=0)
     return (model.predict(X_te, verbose=0).ravel() > 0.5).astype(int)
 
-
-# --------------------------------------------------------------------------
-# metrics
-# --------------------------------------------------------------------------
 
 def metrics(y_true, y_pred):
     tn, fp, fn, tp = confusion_matrix(y_true, y_pred, labels=[0, 1]).ravel()
