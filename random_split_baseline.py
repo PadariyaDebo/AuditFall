@@ -1,28 +1,3 @@
-"""
-Recording-level random-split baseline (stratified 80:20), for comparison with
-earlier studies that use this protocol, with McNemar tests and their 2x2
-contingency tables.
-
-  * labels follow SisFall (F = fall, D = activity of daily living); example
-    filename -> label mappings and class counts are printed
-  * every model is evaluated on the same test set; McNemar uses the exact
-    two-sided test when there are fewer than 25 discordant pairs
-  * accuracy, sensitivity and specificity are reported for every model
-  * the feedforward networks are multilayer perceptrons (no convolutions)
-
-Corrections relative to the original pipeline (see legacy/README.md):
-  * labels: FALL_PREFIX = "F", ADL_PREFIX = ("D",)
-  * split is stratified (the paper says it is; the old script was not)
-  * StandardScaler is fitted on the training set only
-  * 5-fold CV uses correctly aligned labels and a Pipeline (scaler inside CV)
-  * TensorFlow, NumPy and Python are seeded so the MLP results are repeatable
-  * the MLP predictions used for McNemar are the same ones that are reported
-
-Usage (Colab):
-    !python random_split_baseline.py                 # everything
-    !python random_split_baseline.py --no-dl         # classical models only (fast)
-Outputs go to results/random_split/.
-"""
 
 import argparse
 import json
